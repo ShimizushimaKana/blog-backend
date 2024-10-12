@@ -1,5 +1,6 @@
 package com.soyo.blog.model
 
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -8,8 +9,9 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
-    val username: String = "",
-    val password: String = "",
-    val email: String = "",
-    val createdAt: Long = System.currentTimeMillis()
+    @Column(unique = true) // 指定 username 为唯一键
+    var username: String = "",
+    var password: String = "",
+    var email: String = "",
+    val createdAt: LocalDateTime = LocalDateTime.now(),
 )

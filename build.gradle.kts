@@ -1,5 +1,6 @@
 val kotlinxSerializationJsonVersion = "1.3.0"
 val mysqlVersion = "8.0.15"
+val jjwtVersion = "0.9.1"
 
 plugins {
 	kotlin("jvm") version "1.9.25"
@@ -40,10 +41,13 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("mysql:mysql-connector-java:${mysqlVersion}")
+	implementation("io.jsonwebtoken:jjwt:${jjwtVersion}")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 }
 
 kotlin {
@@ -58,6 +62,8 @@ tasks.withType<Test> {
 
 tasks.processResources {
 	from("src/main/resources") {
-		exclude("application.properties")
+		include("application.properties")
+		include("**/*.yml")
 	}
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

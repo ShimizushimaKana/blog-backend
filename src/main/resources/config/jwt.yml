@@ -1,0 +1,3 @@
+jwt:
+  secret_key: G7XqyaqS7+8OTLQ3X6d0o92gr2DirzeU
+  expiration_time: 86400000

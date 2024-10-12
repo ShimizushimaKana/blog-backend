@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*
 class ArticleController(private val articleService: ArticleService) {
     @GetMapping
     // 指定路由
-    fun getAllArticles() = articleService.getAllArticles()
+    fun getAllArticles(): MutableList<Article> = articleService.getAllArticles()
 
     @GetMapping("/{id}")
     fun getArticleById(@PathVariable id: Long): ResponseEntity<Article> {
         return articleService.getArticleById(id)?.let {
             ResponseEntity.ok(it)
-        } ?: ResponseEntity.notFound().build()
+        } ?: ResponseEntity.noContent().build()
     }
 
     @PostMapping
@@ -39,4 +39,25 @@ class ArticleController(private val articleService: ArticleService) {
             ResponseEntity.ok(it)
         } ?: ResponseEntity.notFound().build()
     }
+
+    @GetMapping("/search/author")
+    fun findArticleByAuthor(@RequestParam author: String): ResponseEntity<List<Article>> {
+        val articles = articleService.findArticlesByAuthor(author)
+        return if (articles.isNotEmpty()) {
+            ResponseEntity.ok(articles)
+        } else {
+            ResponseEntity.noContent().build()
+        }
+    }
+
+    @GetMapping("/search/title")
+    fun findArticleByTitle(@RequestParam title: String): ResponseEntity<List<Article>> {
+        val articles = articleService.findArticleByTitle(title)
+        return if (articles.isNotEmpty()) {
+            ResponseEntity.ok(articles)
+        } else {
+            ResponseEntity.noContent().build()
+        }
+    }
+
 }

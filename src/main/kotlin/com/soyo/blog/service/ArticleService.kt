@@ -11,6 +11,10 @@ class ArticleService(private val articleRepository: ArticleRepository) {
 
     fun getArticleById(id: Long): Article? = articleRepository.findById(id).orElse(null)
 
+    fun findArticlesByAuthor(author: String) = articleRepository.findByAuthor(author)
+
+    fun findArticleByTitle(title: String) = articleRepository.findByTitleContainingIgnoreCase(title)
+
     fun createArticle(article: Article) = articleRepository.save(article)
 
     fun deleteArticle(id: Long) = articleRepository.deleteById(id)
