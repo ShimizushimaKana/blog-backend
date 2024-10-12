@@ -28,7 +28,7 @@ class ArticleController(private val articleService: ArticleService) {
     fun deleteArticle(@PathVariable id: Long): ResponseEntity<Unit> {
         return articleService.getArticleById(id)?.let {
             articleService.deleteArticle(id)
-            ResponseEntity.noContent().build<Unit>()
+            ResponseEntity.noContent().build()
         } ?: ResponseEntity.notFound().build()
     }
 
