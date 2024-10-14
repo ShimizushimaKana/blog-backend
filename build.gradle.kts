@@ -1,6 +1,7 @@
 val kotlinxSerializationJsonVersion = "1.3.0"
 val mysqlVersion = "8.0.15"
 val jjwtVersion = "0.9.1"
+val aliyunOssVersion = "3.13.0"
 
 plugins {
 	kotlin("jvm") version "1.9.25"
@@ -42,6 +43,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("mysql:mysql-connector-java:${mysqlVersion}")
 	implementation("io.jsonwebtoken:jjwt:${jjwtVersion}")
+	implementation("com.aliyun.oss:aliyun-sdk-oss:${aliyunOssVersion}")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.springframework.security:spring-security-test")

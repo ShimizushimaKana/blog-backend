@@ -13,5 +13,6 @@ data class User(
     var username: String = "",
     var password: String = "",
     var email: String = "",
+    @Column(name = "created_at")
     val createdAt: LocalDateTime = LocalDateTime.now(),
 )

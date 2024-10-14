@@ -44,6 +44,7 @@ class SecurityConfig(
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
+        // 配置用户认证服务和密码加密方式
         auth.userDetailsService(userService).passwordEncoder(passwordEncode())
     }
 }
